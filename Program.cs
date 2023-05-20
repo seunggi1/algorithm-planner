@@ -1,7 +1,12 @@
+using algorithm_planner.Data;
+using algorithm_planner.Database;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IPlanner, Planner>();
+builder.Services.AddSingleton<Mongo>(new Mongo(builder.Configuration.GetConnectionString("DbConnection")));
 
 var app = builder.Build();
 
@@ -18,6 +23,7 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Planner}/{action=Index}/{id?}");
+
 
 app.Run();
