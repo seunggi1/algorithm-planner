@@ -21,9 +21,6 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Planner}/{action=Index}/{id?}");
-
+app.MapControllers();
 
 app.Run();

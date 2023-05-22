@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
+using Microsoft.Build.Framework;
 
 namespace algorithm_planner.Models
 {
@@ -8,11 +9,14 @@ namespace algorithm_planner.Models
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string? Id { get; set; }
+        [Required]
         [BsonElement("type")]
         public EPlanner Type { get; set; }
-        [BsonElement("name")]
+        [Required]
+        [BsonElement("name")]        
         public string? Name { get; set; }
-        [BsonElement("url")]
+        [Required]
+        [BsonElement("url")]        
         public string? URL { get; set; }
         [BsonElement("date")]
         public DateTime Date { get; set; }
