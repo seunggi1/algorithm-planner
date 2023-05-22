@@ -1,0 +1,27 @@
+﻿<!-- Modal -->
+<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg " role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">기록 수정</h5>
+                <span id="lastStudyDate"></span>
+            </div>
+            <div class="modal-body form-group">
+                <input id="id" type="hidden" />
+                <select id="type" class="form-control-sm mb-2">
+                    <option selected disabled>Category</option>
+                    @foreach (var type in Enum.GetValues<EPlanner>())
+                    {
+                        <option value="@type.ToString("d")">@type</option>
+                    }
+                </select>
+                <input id="name" class="form-control mb-2"/>
+                <input id="url" class="form-control mb-2" />
+                <textarea id="comment" class="form-control" rows="10"></textarea>
+            </div>
+            <div class="modal-footer">                
+                <button class="btn btn-sm btn-success" id="btnUpdate" type="button">Update</button>
+            </div>
+        </div>
+    </div>
+</div>

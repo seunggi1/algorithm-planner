@@ -58,13 +58,16 @@ body {
     order:-1;
 }
 
-    .sidebar header {
+    .sidebar header{
         font-size: 23px;
         color: white;
         text-align: center;
         line-height: 72px;
         background: #033852;
-        user-select: none;
+        user-select: none;        
+    }
+    .sidebar a {
+        color: white;
     }
 
     .sidebar ul {
@@ -72,12 +75,12 @@ body {
         cursor: pointer;
     }
 
-        .sidebar ul span {
+        .sidebar ul a {
             display: block;
             height: 100%;
             width: 100%;
             line-height: 68px;
-            font-size: 15px;
+            font-size: 14px;
             color: white;
             padding-left: 25px;
             box-sizing: border-box;
@@ -90,7 +93,7 @@ body {
             user-select: none
         }
 
-        .sidebar ul li:hover span {
+        .sidebar ul li:hover a {
             padding-left: 60px;
         }
 
@@ -122,7 +125,7 @@ body {
 .planner-list {
     display: flex;
     flex-direction: column;
-   
+    padding:1rem;
 }
 
 .planner-types {
@@ -131,10 +134,7 @@ body {
     flex: 1 1 auto;
     flex-wrap: wrap;
     margin: 2em 0;
-    border: black 1px solid;
-    border-radius:15px;
 }
-
 
     .planner-types > li {
         width: 200px;

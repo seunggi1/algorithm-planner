@@ -4,22 +4,28 @@
     ViewData["Title"] = "Index";
 }
 <div class="sidebar">
-    <header>Type</header>
+    <header>
+        <a href="#top">Planner</a>
+    </header>
     <ul>
         @foreach (var type in Enum.GetValues<EPlanner>())
         {
+            int count = @Model.Count(t => t.Type == type);
+            if(count == 0)
+            {
+                continue;
+            }
+
             <li class="sidebar-types" data-type="@type.ToString("d")">
-                <span>
-                    @type (@Model.Count(t => t.Type == type))
-                </span>
+                <a href="#@type">
+                    @type (@count)
+                </a>
             </li>
         }
     </ul>
 </div>
-
-<h1>학습 기록장</h1>
+<h1 id="top">학습 플래너</h1>
 <div class="m-2 planner-form">
-    
     <select class="form-control-sm algo-type">
         <option selected disabled>Category</option>
         @foreach (var type in Enum.GetValues<EPlanner>())
@@ -36,26 +42,31 @@
     @foreach (var type in Enum.GetValues<EPlanner>())
     {
         var models = Model.Where(p => Enum.Parse<EPlanner>(p.Type.ToString()) == type);
-        if(models.Count() == 0)
+        if (models.Count() == 0)
         {
             continue;
         }
-        <ul class="planner-types d-none" data-type="@type.ToString("d")">
-            @foreach (var item in models)
-            {
-                <li data-id="@item.Id.ToString()">
-                    <div>
-                        <a href="@item.URL" target="_blank">@item.Name</a>
-                    </div>
-                    <div>
-                        @item.Date.ToShortDateString()
-                        <button style="border:none;background:none" class="btn-sm btn-update-modal">
-                            <i class="fa-solid fa-pen"></i>
-                        </button>
-                    </div>                    
-                </li>
-            }
-        </ul>
+        <div class="card mb-5" id="@type">
+            <h5 class="card-header fw-bold text-success">@type</h5>
+            <div class="card-body">
+                <ul class="planner-types" data-type="@type.ToString("d")">
+                    @foreach (var item in models)
+                    {
+                        <li data-id="@item.Id" data-comment="@item.Comment">
+                            <div>
+                                <a href="@item.URL" target="_blank">@item.Name</a>
+                            </div>
+                            <div>
+                                <span>@item.Date.ToShortDateString()</span>
+                                <button style="border:none;background:none" class="btn-sm btn-update-modal">
+                                    <i class="fa-solid fa-pen"></i>
+                                </button>
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
     }
 </div>
 
