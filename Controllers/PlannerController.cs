@@ -26,9 +26,9 @@ namespace algorithm_planner.Controllers
         }
 
         [HttpPut]
-        public async Task<JsonResult> Update([FromBody] PlannerUpdateModel data)
+        public async Task<JsonResult> Update([FromBody] PlannerModel data)
         {
-            return Json(await _dataRepository.UpdateAsync(data));
+            return Json(await _dataRepository.ReplaceAsync(data));
         }
 
         [HttpDelete]

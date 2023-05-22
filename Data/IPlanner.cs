@@ -7,7 +7,8 @@ namespace algorithm_planner.Data
         public Task<List<PlannerModel>> GetAllAsync();
         public Task<List<PlannerModel>> GatAllTypeAsync();
         public Task<int> InsertAsync(PlannerModel data);
-        public Task<int> UpdateAsync(PlannerUpdateModel data);
+        public Task<int> UpdateAsync(PlannerModel data);
+        public Task<int> ReplaceAsync(PlannerModel data);
         public Task<int> DeleteAsync();
     }
 }
