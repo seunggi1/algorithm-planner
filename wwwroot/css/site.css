@@ -28,6 +28,11 @@ html {
     src:url(../font/NanumSquareNeo-Variable.ttf)
 }
 
+@font-face {
+    font-family: IBMPlexSansKR-SemiBold;
+    src: url(../font/IBMPlexSansKR-SemiBold.ttf)
+}
+
 ::-webkit-scrollbar {
     width:10px;
 }
@@ -43,7 +48,7 @@ html {
 }
 
 body {
-    font-family: NanumSquareNeo;
+    font-family: IBMPlexSansKR-SemiBold;
 }
 
 
@@ -140,5 +145,12 @@ body {
         width: 200px;
         margin: 10px;
         list-style: none;
+        
     }
+
+    .planner-list li a{
+        font-size:17px;
+    }
+
+    
 

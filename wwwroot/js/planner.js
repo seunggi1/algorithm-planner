@@ -22,22 +22,19 @@ callModalBtn.forEach((elem) => {
 
 updateBtn.addEventListener('click', onClickUpdateBtn);
 
-sidebarTypes.forEach((elem) => {
-    elem.addEventListener('click', onClickSidebar)
-});
-
 function onClickSaveBtn() {
     fetch('/planner', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ type: algoType.value, name: algoName.value, url: algoURL.value }),
+        body: JSON.stringify({ type: +algoType.value, name: algoName.value, url: algoURL.value }),
     }).then((response) => {
 
         if (response.ok) {
-            toastr.success('insert completed!')
-
+            toastr.success('insert completed!');
+            const path = location.pathname == '/' ? '/planner' : ''
+            location.href = `${location.origin}${path}/#${algoType.options[+algoType.value].text}`;    
         } else {
             throw new Error(response.statusText);
         }
@@ -71,21 +68,6 @@ function onClickUpdateBtn() {
     }).catch((error) => {
         toastr.error(error);
     });
-}
-
-function onClickSidebar(elem) {
-    const type = elem.target.closest('li').dataset['type'];
-
-/*    document.querySelectorAll('.planner-types').forEach(elem => {
-        elem.classList.add('d-none')
-    })
-
-    document.querySelector(`.planner-types[data-type="${type}"]`)
-        .classList
-        .remove('d-none');
-*/
-
-    window.scrollBy(0, document.querySelector(`.planner-types[data-type="${type}"]`).closest('.card').clientHeight);
 }
 
 function onClickCallModalBtn(elem) {
