@@ -22,9 +22,11 @@ namespace algorithm_planner.Data
             return await planner.Find(Builders<PlannerModel>.Filter.Empty).ToListAsync();
         }
 
-        public Task<List<PlannerModel>> GatAllTypeAsync()
+        public async Task<List<PlannerModel>> GatAllTypeAsync(EPlanner type)
         {
-            throw new NotImplementedException();
+            var planner = _db.GetCollection<PlannerModel>(DB_NAME);
+
+            return await planner.Find(Builders<PlannerModel>.Filter.Eq(p => p.Type, type)).ToListAsync();
         }
 
         public async Task<int> InsertAsync(PlannerModel data)
@@ -70,9 +72,14 @@ namespace algorithm_planner.Data
             return 1;
         }
 
-        public Task<int> DeleteAsync()
+        public async Task<int> DeleteAsync(PlannerModel data)
         {
-            throw new NotImplementedException();
+            var planner = _db.GetCollection<PlannerModel>(DB_NAME);
+
+            var filter = Builders<PlannerModel>.Filter.Eq(p => p.Id, data.Id);
+            var result = await planner.DeleteOneAsync(filter);
+
+            return 1;
         }
     }
 }
