@@ -6,6 +6,9 @@
 <div class="sidebar">
     <header>
         <a href="#top">Category</a>
+        <button id="btnBars" type="button">
+            <i class="fa-solid fa-bars text-light"></i>
+        </button>
     </header>
     <ul>
         @foreach (var type in Enum.GetValues<EPlanner>())
@@ -35,7 +38,7 @@
     </select>
     <input class="form-control algo-name" type="text" value="" placeholder="Title" />
     <input class="form-control algo-url" type="text" value="" placeholder="URL" />
-    <button class="btn btn-sm btn-primary">Save</button>
+    <button class="btn btn-sm btn-primary btn-save">Save</button>
 </div>
 
 <div class="planner-list">

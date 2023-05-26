@@ -1,10 +1,13 @@
 ﻿const algoType = document.querySelector('.algo-type');
 const algoName = document.querySelector('.algo-name');
 const algoURL = document.querySelector('.algo-url');
-const saveBtn = document.querySelector('button');
+const saveBtn = document.querySelector('.btn-save');
 const sidebarTypes = document.querySelectorAll('.sidebar-types');
 const callModalBtn = document.querySelectorAll('.btn-update-modal');
-const updateBtn = document.querySelector('#btnUpdate')
+const updateBtn = document.querySelector('#btnUpdate');
+const sidebarBtn = document.querySelector('#btnBars');
+const sidebarStyle = getComputedStyle(sidebarBtn);
+
 const modal = {
     name: document.querySelector('#name'),
     id: document.querySelector('#id'),
@@ -15,12 +18,15 @@ const modal = {
 }
 
 saveBtn.addEventListener('click', onClickSaveBtn);
-
 callModalBtn.forEach((elem) => {
     elem.addEventListener('click', onClickCallModalBtn);
 });
-
 updateBtn.addEventListener('click', onClickUpdateBtn);
+sidebarTypes.forEach((elem) => {
+    elem.addEventListener('click', onClickSidebarEvent);
+})
+sidebarBtn.addEventListener('click', onClickSidebarEvent);
+
 
 function onClickSaveBtn() {
     fetch('/planner', {
@@ -88,4 +94,8 @@ function onClickCallModalBtn(elem) {
 
 function onActiveUpdateModal(isActive) {
     $('#updateModal').modal(isActive ? 'show' : 'hide');
+}
+
+function onClickSidebarEvent() {
+    document.querySelector('.sidebar ul').classList.toggle('active');
 }
